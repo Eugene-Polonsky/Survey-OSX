@@ -4,9 +4,10 @@ import Combine
 class SurveyViewModel: ObservableObject {
     @Published var inquiries: [Inquiry] = []
     private var cancellables = Set<AnyCancellable>()
-    private let mockServer = MockServer()
+    private let server: InquiryService
 
-    init() {
+    init(server: InquiryService) {
+        self.server = server
         loadInquiries()
     }
 
@@ -15,7 +16,7 @@ class SurveyViewModel: ObservableObject {
     }
 
     private func attemptLoadInquiries() {
-        mockServer.loadInquiries()
+        server.loadInquiries()
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { [weak self] completion in
                 switch completion {

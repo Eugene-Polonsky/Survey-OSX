@@ -7,8 +7,8 @@ class Logger {
 
     private init() {
         self.log = OSLog(
-            subsystem: Bundle.main.bundleIdentifier ?? "Incredihire-LLC.Survey",
-            category: "MockServer"
+            subsystem: Bundle.main.bundleIdentifier ?? "com.incredihire.survey",
+            category: "App"
         )
     }
  func log(error: Error, customMessage: String? = nil) {
